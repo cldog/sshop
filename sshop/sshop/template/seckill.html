@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="jumbotron">
+       <h1>秒杀活动</h1>
+        <h2>{{commodity.name}} {{commodity.price}}</h2>
+        <h3>距离秒杀活动结束还有</h3>
+        <div id="countdown"></div>
+        <form action="" method="post">
+            {% raw xsrf_form_html() %}
+            <input class="hidden" name="id" value="1">
+            <button class="btn btn-danger" type="submit">秒杀</button>
+        </form>
+    </div>
+{% end %}

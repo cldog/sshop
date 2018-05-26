@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row marketing">
+
+    <div class="shopcar_list">
+        <table class="table" >
+            <tr>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>操作</th>
+            </tr>
+            {% for data in shopcar %}
+            <tr>
+                <td class="commodity-name"><a href="/info/{{ data.id }}">{{ data.name }}</a></td>
+                <td>{{ data.price }}</td>
+                <td>
+                    <a href="javascript:;" onclick="document.getElementById('{{ data.name }}-{{ data.id }}').submit();">结算</a>
+                    <form action="" method="post" id="{{ data.name }}-{{ data.id }}">
+                        {% raw xsrf_form_html() %}
+                            <input type="hidden" name="price" value="{{ data.price }}">
+                            <input type="hidden" name="name" value="{{data.name}}">
+                    </form>
+                </td>
+            </tr>
+            {% end %}
+        </table>
+    </div>
+</div>
+{% end %}
